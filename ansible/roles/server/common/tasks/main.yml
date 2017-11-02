@@ -1,0 +1,60 @@
+---
+- name: selinux disabled
+  selinux: policy=targeted state=disabled
+  tags:
+    - server
+    - common
+    - selinux
+  notify: reboot system
+
+- name: stop firewalld
+  shell: |
+    systemctl stop firewalld.service
+    systemctl mask firewalld.service
+    systemctl list-unit-files | grep firewalld
+  tags:
+    - server
+    - common
+    - firewalld
+
+- name: package install
+  yum: pkg={{ item }} state=latest
+  with_items:
+    - curl-devel
+    - expat-devel
+    - gettext-devel
+    - openssl-devel
+    - zlib-devel
+    - perl-ExtUtils-MakeMaker
+    - unzip
+  tags:
+    - server
+    - common
+    - install
+
+- name: git install
+  include: git.yml
+  tags:
+    - server
+    - common
+
+- name: .vimrc settings
+  copy: src=.vimrc dest="{{ item.home_dir }}" mode=0644
+        owner={{ item.user_name }} group={{ item.user_name }} backup=yes
+  with_items:
+    - { home_dir: '/root/',                              user_name: 'root' }
+    - { home_dir: '/home/{{ ansible_env.SUDO_USER }}/',  user_name: '{{ ansible_env.SUDO_USER }}' }
+  tags:
+    - server
+    - common
+    - vim
+
+- name: source .vimrc
+  shell: source {{ item }}/.vimrc
+  with_items:
+    - /root
+    - /home/{{ ansible_env.SUDO_USER }}
+  tags:
+    - server
+    - common
+    - vim

@@ -1,0 +1,9 @@
+---
+- name: install java
+  yum: name={{ item }} state=present
+  with_items:
+    - java-{{ java_version }}-openjdk
+    - java-{{ java_version }}-openjdk-devel
+  tags:
+    - java
+    - install

@@ -1,0 +1,9 @@
+- name: jenkins server tasks
+  hosts: jenkins
+  become: yes
+  roles:
+    - server/common
+    - java
+    - ant
+    - jenkins
+    - gradle

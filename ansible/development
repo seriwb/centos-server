@@ -1,0 +1,9 @@
+[jenkins]
+localhost
+
+[docker]
+localhost
+
+[development:children]
+jenkins
+docker

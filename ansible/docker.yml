@@ -1,0 +1,5 @@
+- name: docker server tasks
+  hosts: docker
+  become: yes
+  roles:
+    - docker

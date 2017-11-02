@@ -1,0 +1,7 @@
+#---
+# Sample
+#- name: git clone application-name
+#  git: repo=XXXXXXXX dest={{ application_dir }}/application-name accept_hostkey=yes
+#  tags:
+#    - app
+#    - application-name

@@ -1,0 +1,26 @@
+---
+- name: install node.js development tools
+  yum: name={{ item }} state=present
+  become: yes
+  with_items:
+      - gcc
+      - gcc-c++
+  tags:
+    - nodejs
+
+- name: install nvm
+  shell: curl -o- https://raw.githubusercontent.com/creationix/nvm/{{ nvm_version }}/install.sh | bash
+  register: nvm_install
+  tags:
+    - nodejs
+    - download
+    - install
+
+- name: node settings
+  shell: |
+    source ~/.bashrc
+    nvm install {{ node_version }}
+    nvm alias default {{ node_version }}
+  tags:
+    - nodejs
+    - install

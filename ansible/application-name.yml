@@ -1,0 +1,11 @@
+- name: application-name server tasks
+  hosts: application-name
+  become: yes
+  roles:
+    - server/common
+
+- name: install as local user
+  hosts: application-name
+  become: no
+  roles:
+    - app/application-name

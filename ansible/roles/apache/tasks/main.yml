@@ -1,0 +1,62 @@
+---
+- name: install required packages for httpd
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - zlib-devel
+    - libselinux-devel
+    - pcre-devel
+    - lua-devel
+    - libxml2-devel
+    - openssl-devel
+  tags:
+    - apache
+    - httpd
+
+- name: download httpd
+  get_url:
+    url: http://ftp.kddilabs.jp/infosystems/apache//httpd/httpd-{{ apache_version }}.tar.gz
+    dest: "{{ src_dir }}"
+  tags:
+    - apache
+    - httpd
+    - download
+
+- name: unarchive
+  unarchive: src={{ src_dir }}/httpd-{{ apache_version }}.tar.gz dest={{ src_dir }}
+  tags:
+    - apache
+    - httpd
+
+- name: configure
+  shell: ./configure {{ apache_configure }}
+  args:
+    chdir: "{{ src_dir }}/httpd-{{ apache_version }}"
+  tags:
+    - apache
+    - httpd
+
+- name: make clean
+  shell: make clean
+  args:
+    chdir: "{{ src_dir }}/httpd-{{ apache_version }}"
+  tags:
+    - apache
+    - httpd
+
+- name: make
+  shell: make
+  args:
+    chdir: "{{ src_dir }}/httpd-{{ apache_version }}"
+  tags:
+    - apache
+    - httpd
+
+- name: make install
+  shell: make install
+  args:
+    chdir: "{{ src_dir }}/httpd-{{ apache_version }}"
+  tags:
+    - apache
+    - httpd

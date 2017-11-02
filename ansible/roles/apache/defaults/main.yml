@@ -1,0 +1,9 @@
+apache_version: 2.4.28
+apache_configure: >
+  --prefix={{ install_path }}/apache2
+  -with-ssl={{ install_path }}/opt/openssl
+  --enable-ssl
+  --enable-so
+  --enable-proxy=shared
+  --enable-proxy-ajp=shared
+  --enable-mods-shared=all
