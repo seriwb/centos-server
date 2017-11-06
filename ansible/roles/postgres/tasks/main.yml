@@ -1,0 +1,23 @@
+---
+- name: download postgresql rpm
+  get_url: url=https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm
+           dest={{ src_dir }}
+  tags:
+    - postgres
+    - download
+
+- name: Install postgres
+  yum:
+    name: "{{ item }}"
+  with_items:
+    - "{{ src_dir }}/pgdg-centos96-9.6-3.noarch.rpm"
+    - "postgresql-server"
+  tags:
+    - postgres
+    - install
+
+- name: run postgresql
+  systemd: name=postgresql state=started daemon_reload=yes enabled=yes
+  tags: 
+    - postgres
+    - start

@@ -85,3 +85,18 @@ Vagrant以外から実行する場合は、実行環境にAnsible 2.3.0+ をイ�
 
 ※SSHのagent forwardingを使ってgit cloneしているので、GitHubの秘密鍵がssh-addで登録されている必要があります。  
 vagrant sshしてからansible-playbookコマンドを叩く場合も、ホストOS側で事前にssh-addの実行をお願いします。
+
+
+## Roles
+
+以下のロールを用意しています。
+
+- Ant
+- Apache
+- Docker
+- Gradle
+- Java
+- Jenkins
+- Node.js
+- PostgreSQL
+- Ruby
