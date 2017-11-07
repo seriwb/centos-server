@@ -4,6 +4,10 @@ localhost
 [docker]
 localhost
 
+[mysql]
+localhost
+
 [development:children]
 jenkins
 docker
+mysql

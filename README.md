@@ -116,3 +116,28 @@ vagrant sshしてからansible-playbookコマンドを叩く場合も、ホス�
 ### DB
 
 - PostgreSQL
+- MySQL
+
+
+#### MySQLロールについて
+
+初期作成するMySQLのDB名（test）は、group_vars/all.ymlのmysql_first_db_nameで定義されています。
+
+また、以下のユーザがMySQLに作成されます。
+
+| User   | Password  | Host      |
+| :----- | :-------- | :-------- |
+| root   | root      | localhost |
+| admin  | admin     | localhost, 127.0.0.1, % |
+
+初期設定されるパスワードは、group_vars/all.ymlの
+mysql_root_password、mysql_admin_passwordで定義されています。
+
+※パスワードを保持する/root/.my.cnfは、MySQLロールでの初回作成後にロールを再実行しても置き換わりません。
+
+
+#### ログファイル
+
+MySQLのログファイルは、以下のディレクトリに配置されます。（group_vars/all.ymlの変数で設定）
+
+    mysql_log_dir: /var/log/mysql

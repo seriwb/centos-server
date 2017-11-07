@@ -8,3 +8,9 @@ ruby_version: 2.4.1
 java_version: 1.8.0
 ant_version: 1.10.1
 gradle_version: 4.2.1
+
+# MySQL
+mysql_log_dir: /var/log/mysql
+mysql_root_password: root
+mysql_admin_password: admin
+mysql_first_db_name: test

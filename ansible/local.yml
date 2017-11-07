@@ -11,6 +11,9 @@
     - docker
     - go
     - grpc
+    - mysql
+    - mysql/db
+    - mysql/user
 
 - name: install as local user
   hosts: local

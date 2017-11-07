@@ -1,0 +1,8 @@
+- name: install MySQL and configure the databases
+  hosts: mysql
+  become: yes
+  roles:
+    - server/common
+    - mysql
+    - mysql/db
+    - mysql/user

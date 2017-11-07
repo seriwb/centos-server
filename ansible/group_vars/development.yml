@@ -1,0 +1,10 @@
+stage: development
+
+# 開発するアプリケーションの配置場所
+application_dir: /home/vagrant/repositories
+
+# サーバ情報
+host_name: localhost
+ansible_user: vagrant
+ansible_ssh_pass: vagrant
+ansible_ssh_common_args: "-o ForwardAgent=yes"

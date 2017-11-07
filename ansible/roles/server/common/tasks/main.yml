@@ -33,7 +33,7 @@
     - install
 
 - name: git install
-  include: git.yml
+  include_tasks: git.yml
   tags:
     - server
     - common
