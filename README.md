@@ -91,12 +91,28 @@ vagrant sshしてからansible-playbookコマンドを叩く場合も、ホス�
 
 以下のロールを用意しています。
 
+### 言語
+
+- Go
+- Java
+- Node.js
+- Ruby
+
+
+### ビルド関連
+
 - Ant
+- Gradle
+- Jenkins
+
+
+### ミドルウェア
+
 - Apache
 - Docker
-- Gradle
-- Java
-- Jenkins
-- Node.js
+- gRPC
+
+
+### DB
+
 - PostgreSQL
-- Ruby

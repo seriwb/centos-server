@@ -9,6 +9,8 @@
     - jenkins
     - gradle
     - docker
+    - go
+    - grpc
 
 - name: install as local user
   hosts: local
