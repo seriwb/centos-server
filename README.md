@@ -99,11 +99,12 @@ vagrant sshしてからansible-playbookコマンドを叩く場合も、ホス�
 - Ruby
 
 
-### ビルド関連
+### ビルド関連、CI/CD
 
 - Ant
 - Gradle
 - Jenkins
+- MyBatis Migrations
 
 
 ### ミドルウェア
@@ -117,6 +118,7 @@ vagrant sshしてからansible-playbookコマンドを叩く場合も、ホス�
 
 - PostgreSQL
 - MySQL
+  - JDBC Driver
 
 
 #### MySQLロールについて

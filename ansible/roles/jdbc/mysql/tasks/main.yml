@@ -1,0 +1,26 @@
+---
+- name: download MySQL Connector
+  get_url: >
+    url=https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-{{ jdbc_mysql_version }}.tar.gz
+    dest={{ src_dir }}
+    timeout=1000
+  tags:
+    - jdbc
+    - mysql-connector
+    - download
+
+- name: check and create jdbc directory
+  file: path="{{ install_path }}/jdbc" state=directory mode=0755
+  tags:
+    - jdbc
+    - mysql-connector
+
+- name: unarchive the compressed MySQL Connector
+  unarchive: >
+    copy=no
+    src={{ src_dir }}/mysql-connector-java-{{ jdbc_mysql_version }}.tar.gz
+    dest={{ install_path }}/jdbc
+    creates={{ install_path }}/jdbc/mysql-connector-java-{{ jdbc_mysql_version }}
+  tags:
+    - jdbc
+    - mysql-connector

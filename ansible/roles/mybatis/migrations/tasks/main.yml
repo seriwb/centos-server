@@ -1,0 +1,50 @@
+---
+- block:
+  - name: download MyBatis Migrations 3.3.0 over
+    get_url: >
+      url=https://github.com/mybatis/migrations/releases/download/mybatis-migrations-{{ mybatis_migrations_version }}/mybatis-migrations-{{ mybatis_migrations_version }}-bundle.zip
+      dest={{ src_dir }}
+      timeout=1000
+    tags:
+      - mybatis-migrations
+      - download
+
+  - name: unarchive the compressed MyBatis Migrations
+    unarchive: >
+      copy=no
+      src={{ src_dir }}/mybatis-migrations-{{ mybatis_migrations_version }}-bundle.zip
+      dest={{ install_path }}/
+      creates={{ install_path }}/mybatis-migrations-{{ mybatis_migrations_version }}
+    tags:
+      - mybatis-migrations
+  when: mybatis_migrations_version | version_compare('3.3.0', '>=')
+
+- block:
+  - name: download MyBatis Migrations under 3.2.1
+    get_url: >
+      url=https://github.com/mybatis/migrations/releases/download/mybatis-migrations-{{ mybatis_migrations_version }}/mybatis-migrations-{{ mybatis_migrations_version }}.zip
+      dest={{ src_dir }}
+      timeout=1000
+    tags:
+      - mybatis-migrations
+      - download
+
+  - name: unarchive the compressed MyBatis Migrations
+    unarchive: >
+      copy=no
+      src={{ src_dir }}/mybatis-migrations-{{ mybatis_migrations_version }}.zip
+      dest={{ install_path }}/
+      creates={{ install_path }}/mybatis-migrations-{{ mybatis_migrations_version }}
+    tags:
+      - mybatis-migrations
+  when: mybatis_migrations_version | version_compare('3.3.0', '<')
+
+- name: update the symbolic link to the MyBatis Migrations install directory
+  file: "path={{ install_path }}/mybatis src={{ install_path }}/mybatis-migrations-{{ mybatis_migrations_version }} state=link force=yes"
+  tags:
+    - mybatis-migrations
+
+- name: create the symbolic link to the MyBatis Migrations binary
+  file: "path={{ command_path }}/migrate src={{ install_path }}/mybatis/bin/migrate state=link"
+  tags:
+    - mybatis-migrations
