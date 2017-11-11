@@ -9,6 +9,7 @@ java_version: 1.8.0
 ant_version: 1.10.1
 gradle_version: 4.2.1
 mybatis_migrations_version: 3.2.1
+flyway_version: 4.2.0
 
 # MySQL
 mysql_log_dir: /var/log/mysql

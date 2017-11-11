@@ -105,13 +105,16 @@ vagrant sshしてからansible-playbookコマンドを叩く場合も、ホス�
 - Gradle
 - Jenkins
 - MyBatis Migrations
+- flyway
 
 
 ### ミドルウェア
 
+- nginx
 - Apache
 - Docker
 - gRPC
+- SchemaSpy
 
 
 ### DB
@@ -143,3 +146,19 @@ mysql_root_password、mysql_admin_passwordで定義されています。
 MySQLのログファイルは、以下のディレクトリに配置されます。（group_vars/all.ymlの変数で設定）
 
     mysql_log_dir: /var/log/mysql
+
+
+#### nginxロールについて
+
+##### SSLの秘密鍵、証明書
+
+Ansible上で管理しているのは、以下の手順で作成した、開発用の秘密鍵と証明書です。
+
+```
+$ openssl genrsa 2048 > server.key
+$ openssl req -new -key server.key > server.csr
+（問い合わせは全てEnterのみ）
+$ openssl x509 -days 3650 -req -signkey server.key < server.csr > server.crt
+```
+
+変更する場合は、`{{ nginx_conf_dir }}/ssl`ディレクトリ配下にファイルを配置してください。

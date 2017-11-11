@@ -16,6 +16,11 @@
     - mysql/user
 #    - jdbc/mysql
     - mybatis/migrations
+#    - flyway
+#    - schemaspy
+#    - schemaspy/mysql
+#    - nginx
+#    - nginx/schemaspy
 
 - name: install as local user
   hosts: local
