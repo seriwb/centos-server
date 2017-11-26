@@ -1,0 +1,23 @@
+---
+- block:
+  - name: download Solr
+    get_url: >
+      url=http://ftp.riken.jp/net/apache/lucene/solr/{{ solr_version }}/solr-{{ solr_version }}.tgz
+      dest={{ src_dir }}
+      timeout=1000
+    tags: download
+  
+  - name: unarchive the compressed Solr
+    unarchive: >
+      copy=no
+      src={{ src_dir }}/solr-{{ solr_version }}.tgz
+      dest={{ install_path }}/
+      creates={{ install_path }}/solr-{{ solr_version }}
+
+  - name: update the symbolic link to the Solr install directory
+    file: "path={{ install_path }}/solr src={{ install_path }}/solr-{{ solr_version }} state=link force=yes"
+
+  - name: create the symbolic link to the Solr binary
+    file: "path={{ command_path }}/solr src={{ install_path }}/solr/bin/solr state=link"
+
+  tags: solr

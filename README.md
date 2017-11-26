@@ -1,4 +1,4 @@
-# dev-server
+# centos-server
 
 [CentOS 7の仮想OS](https://atlas.hashicorp.com/centos/boxes/7)上で、各種動作確認環境を構築するプロジェクトです。
 
@@ -115,6 +115,7 @@ vagrant sshしてからansible-playbookコマンドを叩く場合も、ホス�
 - Docker
 - gRPC
 - SchemaSpy
+- Solr
 
 
 ### DB

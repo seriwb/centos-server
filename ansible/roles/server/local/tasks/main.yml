@@ -1,6 +1,24 @@
 ---
-- name: check and create application directory
-  file: path="{{ application_dir }}" state=directory owner={{ ansible_env.SUDO_USER }} group={{ ansible_env.SUDO_USER }} mode=0755
+- block:
+  - name: check and create application directory
+    file: path="{{ application_dir }}" state=directory owner={{ ansible_env.SUDO_USER }} group={{ ansible_env.SUDO_USER }} mode=0755
+
+  - name: add a line to sudoers for sudo /usr/local/bin
+    lineinfile:
+      dest: /etc/sudoers
+      line: 'Defaults   env_keep += "PATH"'
+      insertbefore: '^Defaults\s*secure_path.*'
+      backup: yes
+    tags: sudoers
+
+  - name: comment out secure_path in sudoers
+    replace:
+      path: /etc/sudoers
+      regexp: '^Defaults(\s*)secure_path'
+      replace: '#Defaults\1secure_path'
+      backup: yes
+    tags: sudoers
+
   tags:
     - server
     - local

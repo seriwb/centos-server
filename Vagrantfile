@@ -5,7 +5,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "centos/7"
 
-  config.vm.hostname = "dev-server"
+  config.vm.hostname = "centos-server"
 
   if Vagrant::Util::Platform.windows?
     ENV["VAGRANT_DETECTED_OS"] = ENV["VAGRANT_DETECTED_OS"].to_s + " cygwin"
@@ -67,6 +67,8 @@ Vagrant.configure(2) do |config|
     ansible.limit = "all"
     ansible.install = true
     ansible.inventory_path = "/home/vagrant/ansible/local"
+    #ansible.tags = "server,java,solr"
+    #ansible.skip_tags = ""
   end
 
 end

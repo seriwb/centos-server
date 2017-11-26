@@ -21,6 +21,7 @@
 #    - schemaspy/mysql
 #    - nginx
 #    - nginx/schemaspy
+    - solr
 
 - name: install as local user
   hosts: local

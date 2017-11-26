@@ -1,0 +1,7 @@
+- name: install Solr and configure the databases
+  hosts: solr
+  become: yes
+  roles:
+    - server/common
+    - java
+    - solr
