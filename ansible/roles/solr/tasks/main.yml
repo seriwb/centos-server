@@ -14,6 +14,11 @@
       dest={{ install_path }}/
       creates={{ install_path }}/solr-{{ solr_version }}
 
+  - name: chmod 777 example
+    file: path="{{ install_path }}/solr-{{ solr_version }}" state=directory
+          owner={{ ansible_env.SUDO_USER }} group={{ ansible_env.SUDO_USER }}
+          recurse=yes
+
   - name: update the symbolic link to the Solr install directory
     file: "path={{ install_path }}/solr src={{ install_path }}/solr-{{ solr_version }} state=link force=yes"
 
