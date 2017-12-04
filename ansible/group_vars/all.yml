@@ -3,11 +3,11 @@ install_path: /usr/local
 command_path: /usr/local/bin
 
 # ミドルウェアバージョン
-git_version: 2.14.2
+git_version: 2.15.1
 ruby_version: 2.4.1
 java_version: 1.8.0
 ant_version: 1.10.1
-gradle_version: 4.2.1
+gradle_version: 4.3.1
 mybatis_migrations_version: 3.2.1
 flyway_version: 4.2.0
 solr_version: 7.1.0
@@ -19,4 +19,4 @@ mysql_admin_password: admin
 mysql_first_db_name: test
 
 # JDBC
-jdbc_mysql_version: 5.1.44
+jdbc_mysql_version: 5.1.45
