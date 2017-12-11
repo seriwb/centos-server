@@ -24,6 +24,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: "192.168.33.10"
 #  config.vm.network "forwarded_port", guest: 3000, host: 3000
   config.vm.network "forwarded_port", guest: 8983, host: 8983
+  config.vm.network "forwarded_port", guest: 3306, host: 3306
 
   config.vm.synced_folder ".", "/vagrant", disabled: true
   # If you are using Windows, it may be more faster and to use the RSync.

@@ -22,6 +22,7 @@
 #    - nginx
 #    - nginx/schemaspy
     - solr
+    - mongodb
 
 - name: install as local user
   hosts: local
@@ -29,3 +30,4 @@
   roles:
     - ruby
     - nodejs
+    - nodejs/yarn

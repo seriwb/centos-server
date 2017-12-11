@@ -1,0 +1,18 @@
+---
+- name: get yarn.repo
+  get_url:
+    url: https://dl.yarnpkg.com/rpm/yarn.repo
+    dest: /etc/yum.repos.d/yarn.repo
+  become: yes
+  tags:
+    - nodejs
+    - yarn
+    - download
+
+- name: install yarn
+  yum: name=yarn state=present
+  become: yes
+  tags:
+    - nodejs
+    - yarn
+    - install

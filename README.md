@@ -106,6 +106,7 @@ vagrant sshしてからansible-playbookコマンドを叩く場合も、ホス�
 - Jenkins
 - MyBatis Migrations
 - flyway
+- Yarn
 
 
 ### ミドルウェア
@@ -123,6 +124,7 @@ vagrant sshしてからansible-playbookコマンドを叩く場合も、ホス�
 - PostgreSQL
 - MySQL
   - JDBC Driver
+- MongoDB
 
 
 #### MySQLロールについて
